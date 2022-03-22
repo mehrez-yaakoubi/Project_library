@@ -1,7 +1,7 @@
 const express = require('express');
 const Book = require("../modules/book");
 const bodyParser = require("body-parser");
-const autoris=require("../middelware/Autoris")
+const autoris=require("../middelware/Autoris");
 
 const db = require('../bd/connect');
 
@@ -34,12 +34,11 @@ index.get("/books", async (req, res) => {
     })
 
 
-    index.post("/books", async (req, res) => {
+    index.post("/addbooks", async (req, res) => {
         try {
             let new_book = new Book({
                 Titre: req.body.Titre,
                 Auteur: req.body.Auteur,
-                Catalogue: req.body.Catalogue,
                 Type: req.body.Type,
                 Etat: req.body.Etat
 

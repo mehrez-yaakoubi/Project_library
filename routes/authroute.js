@@ -1,13 +1,12 @@
 const route = require('express').Router()
-const authcontroller = require('../controllers/authcontroller')
-const body=require('express').urlencoded({extended:true})
-route.post('/register',body,authcontroller.postregister)
-module.exports = route;
+//const authcontroller = require('../controllers/authcontroller')
+//const body=require('express').urlencoded({extended:true})
+//route.post('/register',body,authcontroller.postregister)
 const {Author} = require('../modules/auth');
-const auth=require('../middelware/auth');
-const Autotris=require('../middelware/Autoris');
+//const auth=require('../middelware/auth');
+//const Autoris=require('../middelware/Autoris');
 
-router.post('/addAuthor',Autotris,async (req,res)=>{
+route.post('/addauthor',async (req,res)=>{
     try {
           let author = new Author(req.body);
         author = await author.save();
@@ -19,7 +18,7 @@ router.post('/addAuthor',Autotris,async (req,res)=>{
 });
 
 // get All authors
-router.get('/GetAuthor',auth,async (req,res)=>{
+route.get('/getauthor',async (req,res)=>{
     try {
         let authors = await Author.find();
         res.send(authors)
@@ -30,7 +29,7 @@ router.get('/GetAuthor',auth,async (req,res)=>{
 });
 
 //update
-router.put('/:id',auth,Autotris,async (req,res)=>{
+route.put('putauthor/:id',async (req,res)=>{
     try {
        await Author.updateOne({_id : req.params.id}, req.body);
         res.send(await Author.findById(req.params.id));
@@ -40,7 +39,7 @@ router.put('/:id',auth,Autotris,async (req,res)=>{
     
 });
 
-router.delete('/:id',auth,Autotris,async (req,res)=>{
+route.delete('deleteauthor/:id',async (req,res)=>{
     try {
         let author = await Author.findByIdAndRemove(req.params.id);
         if(!author)
@@ -52,4 +51,4 @@ router.delete('/:id',auth,Autotris,async (req,res)=>{
     
 });
 
-module.exports=router;
+module.exports=route;
