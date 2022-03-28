@@ -8,7 +8,12 @@ const {Author} = require('../modules/auth');
 
 route.post('/addauthor',async (req,res)=>{
     try {
-          let author = new Author(req.body);
+          let author = new Author({
+             name:req.body.name,
+             email:req.body.email,
+             password:req.body.password
+          });
+          console.log("readed");
         author = await author.save();
         res.send(author);
     } catch (error) {

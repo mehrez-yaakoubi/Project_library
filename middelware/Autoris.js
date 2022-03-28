@@ -1,5 +1,5 @@
 function checkAdmin(req,res,next){
-    if(req.user.isAdmin!=false);
+    if(req.user.isAdmin = false);
         return res.status(401).send('You don\'t have the right to be here.')
     
     next();

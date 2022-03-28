@@ -3,16 +3,16 @@
 
    const mongoose = require("mongoose");
    
-   mongoose.connect('mongodb+srv://Mehrez:09915022.MAma@cluster0.bnh4u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-   .then(()=>console.log('connected!')).catch(err=>console.error('error connection:',err.message));
+   //mongoose.connect('mongodb+srv://Mehrez:09915022.MAma@cluster0.bnh4u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+   //.then(()=>console.log('connected!')).catch(err=>console.error('error connection:',err.message));
    
-   // var url='mongodb://localhost:27017/ProjectNode';
-    //mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true }).
-    //then(()=>console.log("database connected in mongo ")).catch(err=>console.log("Euror connection!!"+err));
+    var url='mongodb://localhost:27017/Project';
+    mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true }).
+    then(()=>console.log("database connected in mongo ")).catch(err=>console.log("Euror connection!!"+err));
 
-
-
-
+   //const mongoose =require('mongoose');
+   //const Url='mongodb:localhost:27017/Project'; 
+    //console.log('connected');
     /*const mongoose=require('mongoose');
 const url ='mongodb://localhost:27017/bibliothéque'
 
