@@ -18,11 +18,11 @@ const bookSchema = mongoose.Schema({
 
     Etat:{ type: String,required: true,},
     stock:{type:Number, required:true,default:0},
-    //comments :{type:String}
-    // [{
-      //  type : mongoose.Schema.Types.ObjectId,
-        //ref : "Comment",
-    // }],
+    comments ://{type:String}
+     {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Comment",
+    },
 });
 
 module.exports= mongoose.model("book",bookSchema);

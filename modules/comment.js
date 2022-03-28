@@ -2,20 +2,20 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
     text : String,
-    author :{
+    user :{
         id : {
             type : mongoose.Schema.Types.ObjectId,
-            ref : "Users",
+            ref : "users",
         },
-        username : String,
+        //username : String,
     },
     
     book : {
         id : {
             type : mongoose.Schema.Types.ObjectId,
-            ref : "Book",
+            ref : "book",
         },
-        title : String,
+       // title : String,
     },
     
     date : {type : Date, default : Date.now()},

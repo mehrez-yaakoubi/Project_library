@@ -43,4 +43,36 @@ await reserv.save();
 
 }catch(error){ console.log(error)}
 });
+
+router.get("/getreservation", async (req, res) => {
+    try {
+        await reservation.find().then((result) => {
+            res.send(result);
+
+        });
+    } catch (err) {
+        console.log(err);
+    };
+});
+router.delete("/delete/:id", async (req, res) => {
+    try {
+        await reservation.findOneAndDelete({ id: req.params.id });
+        res.send("supprimé avec succés !");
+    } catch (err) {
+
+    }
+});
+
+
+router.put('/update/:id',async(req,res)=>{
+
+    await  reservation.updateOne({_id:req.params.id},req.body);
+    
+    res.send(await reservation.findById(req.params.id));
+    
+    
+    
+    });
+
+
 module.exports=router

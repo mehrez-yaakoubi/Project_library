@@ -6,33 +6,31 @@ const router = express.Router();
 
 
 router.post("/addComment",async(req,res,next)=>{
+       
+        const idUser = req.body.idUser;//  {idUser : .....}
+        const idBook = req.body.idBook;
+        const bookRes = await book.findOne(idBook);
+       const UserRes = await user.findOne(idUser);
     try{
-        const comment_text = req.body.comment;
-        const user_id = req.user._id;
-        const username = req.user.username;
-        // fetching the book to be commented by id
-        const book_id = req.params.book_id;
-        const book = await book.findById(book_id);
-
         // creating new comment instance
-        const comment = new Comment({
-            text: comment_text,
-            author: {
-                id: user_id,
-                username: username,
-            },
-            book: {
-                id: book._id,
-                title: book.title,
-            }
+        const newcomment = new comment({
+            text:req.body.text, //comment_text,
+            user: UserRes, 
+            book: bookRes  
         });
-        await comment.save();
+        
+            console.log("saved");
+        res.json(newcomment);
+        await newcomment.save();
         
         // pushing the comment id to book
-        book.comments.push(comment._id);
+        book.comments.push(newcomment._id);
+        console.log("pushed")
         await book.save();
+        
+        
 
-    }catch(err){console.log("error")};
+    }catch(err){console.log("error"+err.message)};
 
 });
 router.put("/updateComent",async(req,res,next)=>{
